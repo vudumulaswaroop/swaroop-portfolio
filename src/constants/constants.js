@@ -1,10 +1,14 @@
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_GOOGLE_CLIENT_SECRET;
 
-export const EXPERIENCES = process.env.REACT_APP_EXPERIENCES;
+// Parse the JSON string from environment variables, or fallback to an empty array []
+export const EXPERIENCES = process.env.REACT_APP_EXPERIENCES
+    ? JSON.parse(process.env.REACT_APP_EXPERIENCES)
+    : [];
 
-export const PROJECTS =process.env.REACT_APP_PROJECTS;
-
+export const PROJECTS = process.env.REACT_APP_PROJECTS
+    ? JSON.parse(process.env.REACT_APP_PROJECTS)
+    : [];
 export const STARS = [
     { top: '10%', left: '80%', delay: '0s', duration: '10s' },
     { top: '25%', left: '95%', delay: '25s', duration: '8s' },
