@@ -2,11 +2,29 @@ const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_GOOGLE_CLIENT_SECRET;
 
 // Parse the JSON string from environment variables, or fallback to an empty array []
-export const EXPERIENCES = process.env.REACT_APP_EXPERIENCES
+// Define interfaces for your structures to keep TypeScript happy
+interface ExperienceItem {
+    period: string;
+    role: string;
+    company: string;
+    description: string;
+    skills: string[];
+    link?: string;
+}
+
+interface ProjectItem {
+    title: string;
+    description: string;
+    skills: string[];
+    link?: string;
+}
+
+// Typecast the JSON parse results
+export const EXPERIENCES: ExperienceItem[] = process.env.REACT_APP_EXPERIENCES
     ? JSON.parse(process.env.REACT_APP_EXPERIENCES)
     : [];
 
-export const PROJECTS = process.env.REACT_APP_PROJECTS
+export const PROJECTS: ProjectItem[] = process.env.REACT_APP_PROJECTS
     ? JSON.parse(process.env.REACT_APP_PROJECTS)
     : [];
 export const STARS = [
