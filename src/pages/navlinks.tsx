@@ -5,7 +5,7 @@ export const Navlinks = ()=> {
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['about', 'experience', 'projects'];
+            const sections = ['about', 'experience', 'projects','contactus'];
             const scrollPosition = window.scrollY + 200;
 
             for (const sectionId of sections) {
