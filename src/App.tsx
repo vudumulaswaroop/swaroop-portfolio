@@ -23,9 +23,10 @@ function App() {
           {/* Global SEO Meta Tags */}
           <Helmet>
               <title>Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech</title>
+              <meta name="robots" content="index, follow, max-image-preview:large" />
               <meta
                   name="description"
-                  content="Official portfolio of Swaroop Reddy Vudumula — Software Engineer & UI Developer showcasing Agri Milk monitoring, Pharma Tech, and pharma machinery solutions."
+                  content="Official portfolio of Swaroop Reddy Vudumula, a software engineer and technology leader building Agri Milk monitoring, Pharma Tech, Industrial IoT, and modern web products."
               />
               <meta
                   name="keywords"
@@ -33,28 +34,48 @@ function App() {
               />
               <meta name="author" content="Swaroop Reddy Vudumula" />
               <link rel="canonical" href="https://swaroopvudumula.com/" />
+              <meta property="og:site_name" content="Swaroop Reddy Vudumula" />
+              <meta property="og:locale" content="en_US" />
+              <meta property="og:image" content="https://swaroopvudumula.com/logo192.png" />
+              <meta property="og:image:alt" content="Swaroop Reddy Vudumula portfolio" />
 
               {/* Open Graph Tags */}
               <meta property="og:title" content="Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech" />
               <meta property="og:description" content="Explore projects by Swaroop Reddy Vudumula in Agri Milk, Pharma Tech, Pharma Machinery, and IT product engineering." />
               <meta property="og:url" content="https://swaroopvudumula.com/" />
               <meta property="og:type" content="website" />
+              <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:title" content="Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech" />
+              <meta name="twitter:description" content="Explore software engineering, Industrial IoT, Agri Milk monitoring, Pharma Tech, and web product work by Swaroop Reddy Vudumula." />
+              <meta name="twitter:image" content="https://swaroopvudumula.com/logo192.png" />
 
               {/* Structured Data (JSON-LD) */}
               <script type="application/ld+json">
                   {JSON.stringify({
                       "@context": "https://schema.org",
-                      "@type": "Person",
-                      "name": "Swaroop Reddy Vudumula",
-                      "alternateName": ["Swaroop Reddy", "Swaroop Vudumula", "Swaroop"],
-                      "url": "https://swaroopvudumula.com/",
-                      "jobTitle": "Software Engineer & UI Developer",
-                      "knowsAbout": [
-                          "Agri Milk",
-                          "Pharma Tech",
-                          "Pharma Machinery",
-                          "UI Development",
-                          "Software Engineering"
+                      "@graph": [
+                          {
+                              "@type": "Person",
+                              "@id": "https://swaroopvudumula.com/#person",
+                              "name": "Swaroop Reddy Vudumula",
+                              "alternateName": ["Swaroop Reddy", "Swaroop Vudumula", "Swaroop"],
+                              "url": "https://swaroopvudumula.com/",
+                              "jobTitle": "Software Engineer & Technology Leader",
+                              "description": "Software engineer and technology leader specializing in Industrial IoT, Agri Milk monitoring, Pharma Tech, and web product development.",
+                              "sameAs": [
+                                  "https://github.com/vudumulaswaroop",
+                                  "https://www.linkedin.com/in/swaroop-reddy-vudumula/"
+                              ],
+                              "knowsAbout": ["Industrial IoT", "Agri Milk Monitoring", "Pharma Tech", "Pharma Machinery", "UI Development", "Software Engineering"]
+                          },
+                          {
+                              "@type": "WebSite",
+                              "@id": "https://swaroopvudumula.com/#website",
+                              "url": "https://swaroopvudumula.com/",
+                              "name": "Swaroop Reddy Vudumula Portfolio",
+                              "description": "Portfolio of Swaroop Reddy Vudumula, software engineer and technology leader.",
+                              "publisher": {"@id": "https://swaroopvudumula.com/#person"}
+                          }
                       ]
                   })}
               </script>

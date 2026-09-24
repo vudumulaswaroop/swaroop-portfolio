@@ -8,6 +8,11 @@ export const Navlinks = ()=> {
             const sections = ['about', 'experience', 'projects','contactus'];
             const scrollPosition = window.scrollY + 200;
 
+            if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1) {
+                setActiveSection('contactus');
+                return;
+            }
+
             for (const sectionId of sections) {
                 const element = document.getElementById(sectionId);
                 if (element) {

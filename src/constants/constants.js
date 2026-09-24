@@ -48,13 +48,13 @@ export const PROJECTS = [
         title: "Agri Milk Monitoring Tech",
         description: "IoT-enabled agricultural monitoring platform for real-time milk production tracking, live farm updates, and quality telemetry management.",
         skills: ["React", "Firebase", "Node.js", "IoT Telemetry", "REST APIs"],
-        link: "https://github.com/vudumulaswaroop/agri-milk-montering-tech"
+        link: "https://agri.swaroopvudumula.com/"
     },
     {
         title: "Pharma Centrifuge Dashboard",
         description: "Real-time industrial dashboard monitoring machinery telemetry, operational metrics, and energy consumption for pharma manufacturing.",
         skills: ["React", "TypeScript", "Chart.js", "WebSockets", "IoT Telemetry"],
-        link: "https://github.com/vudumulaswaroop/pharma-centrifuge-dashboard"
+        link: "https://pharma.swaroopvudumula.com/"
     },
     {
         title: "Hospital Application Udumula",
