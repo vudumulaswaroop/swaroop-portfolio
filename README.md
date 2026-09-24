@@ -1,46 +1,106 @@
-# Getting Started with Create React App
+# Swaroop Reddy Vudumula Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio for Swaroop Reddy Vudumula, a software engineer and technology leader working across Industrial IoT, Agri Milk monitoring, Pharma Tech, pharmaceutical machinery, and web product development.
+
+**Live site:** [swaroopvudumula.com](https://swaroopvudumula.com/)
+
+[![Visit portfolio](https://img.shields.io/badge/Portfolio-Visit%20Website-0A66C2?style=for-the-badge)](https://swaroopvudumula.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github)](https://github.com/vudumulaswaroop)
+
+## Features
+
+- Responsive single-page portfolio layout
+- About, experience, projects, and contact sections
+- Scroll-aware navigation with contact-section handling at the bottom of the page
+- Contact form with India, USA, and international phone validation
+- GitHub, LinkedIn, and email profile links
+- Mouse spotlight and falling-star visual effects
+- SEO metadata, Open Graph tags, Twitter cards, JSON-LD structured data, `robots.txt`, and sitemap
+- Automated tests with coverage reporting
+
+## Tech Stack
+
+- React 19
+- TypeScript 5
+- React DOM
+- React Helmet Async
+- Create React App with `react-scripts`
+- HTML and CSS
+- Jest and Testing Library
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18 or newer
+- npm
+
+### Install
+
+```bash
+git clone https://github.com/vudumulaswaroop/swaroop-portfolio.git
+cd swaroop-portfolio
+npm install
+```
+
+### Start development
+
+```bash
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Available Scripts
 
-In the project directory, you can run:
+| Command | Description |
+| --- | --- |
+| `npm start` | Starts the development server. |
+| `npm test` | Runs the Jest test watcher. |
+| `npm test -- --watchAll=false` | Runs the test suite once. |
+| `npm test -- --coverage --watchAll=false` | Runs tests and generates coverage reports. |
+| `npm run build` | Creates an optimized production build in `build/`. |
+| `npm run eject` | Ejects the Create React App configuration. This is irreversible. |
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```text
+public/
+  index.html       Static SEO metadata and structured data
+  robots.txt       Crawler directives
+  sitemap.xml      Search engine sitemap
+src/
+  App.tsx          Application shell and global SEO metadata
+  App.css          Application styles
+  components/      Reusable components such as SEO
+  constants/       Experience, project, and visual-effect data
+  pages/           Portfolio sections and navigation
+  *.test.*         Jest and Testing Library tests
+package.json       Scripts and dependencies
+tsconfig.json      TypeScript configuration
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## SEO and Search Indexing
 
-### `npm test`
+The production site publishes:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Canonical URL: `https://swaroopvudumula.com/`
+- Sitemap: `https://swaroopvudumula.com/sitemap.xml`
+- Crawler rules: `https://swaroopvudumula.com/robots.txt`
+- Person and WebSite JSON-LD structured data
 
-### `npm run build`
+After deploying changes, use [Google Search Console](https://search.google.com/search-console) to verify the domain, submit the sitemap, and request indexing for the homepage. Search indexing and ranking are controlled by Google and are not immediate or guaranteed.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contact
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Website: [swaroopvudumula.com](https://swaroopvudumula.com/)
+- GitHub: [github.com/vudumulaswaroop](https://github.com/vudumulaswaroop)
+- LinkedIn: [Swaroop Reddy Vudumula](https://www.linkedin.com/in/swaroop-reddy-vudumula/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Copyright (c) 2026 Swaroop Reddy Vudumula.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p align="center">Built by <strong>Swaroop Reddy Vudumula</strong></p>

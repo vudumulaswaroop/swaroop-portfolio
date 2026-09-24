@@ -1,33 +1,23 @@
 import React from "react";
 import '../App.css';
 import {EXPERIENCES} from "../constants/constants";
+import { ContentCard } from "../components/ContentCard";
+import { Section } from "../components/Section";
 
 
 export const Experiences = () => (
-    <section id="experience" className="section">
-        <h2 className="section-title">Experience</h2>
+    <Section id="experience" title="Experience">
         <div className="card-list">
-            {EXPERIENCES.map((exp, index) => {
-                const CardComponent = exp.link ? 'a' : 'div';
-                const linkProps = exp.link ? { href: exp.link, target: "_blank", rel: "noopener noreferrer" } : {};
-
-                return (
-                    <CardComponent key={index} {...linkProps} className="card">
-                        <div className="card-header">{exp.period}</div>
-                        <div>
-                            <h3 className="card-title">
-                                {exp.role} · {exp.company} {exp.link && '↗'}
-                            </h3>
-                            <p className="card-description">{exp.description}</p>
-                            <ul className="tags">
-                                {exp.skills.map((skill, sIdx) => (
-                                    <li key={sIdx} className="tag">{skill}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </CardComponent>
-                );
-            })}
+            {EXPERIENCES.map((exp) => (
+                <ContentCard
+                    key={`${exp.period}-${exp.company}`}
+                    eyebrow={exp.period}
+                    title={`${exp.role} · ${exp.company}`}
+                    description={exp.description}
+                    skills={exp.skills}
+                    href={exp.link}
+                />
+            ))}
         </div>
         <h3 className="section-title">
             <a
@@ -38,6 +28,6 @@ export const Experiences = () => (
                 Take a look of resume
             </a>
         </h3>
-    </section>
+    </Section>
 
 );

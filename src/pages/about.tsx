@@ -1,11 +1,10 @@
 import React from "react";
 import '../App.css';
+import { Section } from "../components/Section";
 
 
 export const About = () => (
-
-    <section id="about" className="section">
-        <h2 className="section-title">About</h2>
+    <Section id="about" title="About">
 
         <div className="about-text">
 
@@ -76,5 +75,5 @@ export const About = () => (
 
 
         </div>
-    </section>
+    </Section>
 );
