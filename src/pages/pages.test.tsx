@@ -28,7 +28,7 @@ test('renders the about, experience, projects, footer, social, and stars content
   expect(screen.getByRole('heading', { name: 'About' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Experience' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Projects' })).toBeInTheDocument();
-  expect(screen.getByText('Take a look of resume')).toHaveAttribute(
+  expect(screen.getByText('Take a look at my resume')).toHaveAttribute(
     'href',
     '/SwaroopReddyVudumulaResume.pdf',
   );
