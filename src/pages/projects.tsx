@@ -24,8 +24,6 @@ export const Projects = () => {
             try {
                 const data = await getProjects();
 
-                console.log("PROJECTS FROM SUPABASE:", data);
-
                 if (isMounted) {
                     setProjects(data || []);
                 }
