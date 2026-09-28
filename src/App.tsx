@@ -5,6 +5,19 @@ import {FallinngStarsEffect} from "./pages/fallinngStarsEffect";
 import {Portfolio} from "./pages/portfolio";
 function App() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => setTime(new Date()), 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const indiaHour = Number(new Intl.DateTimeFormat('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        hourCycle: 'h23',
+    }).format(time));
+    const isNight = indiaHour >= 18 || indiaHour < 6;
 
     // Track cursor position for the dynamic spotlight effect
     useEffect(() => {
@@ -19,7 +32,7 @@ function App() {
     // Track active section on scroll
 
     return (
-      <div>
+    <div className={`app-shell${isNight ? ' night-mode' : ''}`}>
           {/* Global SEO Meta Tags */}
           <Helmet>
               <title>Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech</title>
@@ -82,10 +95,14 @@ function App() {
           </Helmet>
           {/* Background Radial Light Beam (Mouse Glow Effect) */}
           <div
-              className="mouse-spotlight"
+              className={`mouse-spotlight${isNight ? ' night-moon' : ''}`}
               style={{
-                  background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`
-              }}
+                  '--mouse-x': `${mousePos.x}px`,
+                  '--mouse-y': `${mousePos.y}px`,
+                  background: isNight
+                      ? 'none'
+                      : `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`
+              } as React.CSSProperties}
           />
           {/* Falling Stars Layer */}
           <FallinngStarsEffect/>

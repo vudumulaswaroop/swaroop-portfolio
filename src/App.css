@@ -12,6 +12,23 @@
     --contact-accent: #2563eb;
     --contact-focus: rgba(37, 99, 235, 0.12);
     --white: #fff;
+    --moon-color: #fff4c2;
+    --moon-glow: rgba(255, 244, 194, 0.28);
+    --moon-size: 34px;
+    --night-star-color: #fff;
+    --night-star-cool-color: #dceeff;
+    --night-star-opacity: 0.8;
+    --night-star-size: 1px;
+    --night-star-edge: 1.5px;
+    --shooting-star-color: var(--accent-teal);
+    --shooting-star-width: 120px;
+    --shooting-star-height: 2px;
+    --shooting-star-angle: -35deg;
+    --shooting-star-travel: -800px;
+    --shooting-star-glow-size: 6px;
+    --shooting-star-head-size: 6px;
+    --shooting-star-head-glow-inner: 10px;
+    --shooting-star-head-glow-outer: 20px;
     --radius-card: 8px;
     --radius-pill: 9999px;
     --radius-contact: 16px;
@@ -40,6 +57,16 @@ body {
     overflow-x: hidden;
 }
 
+.app-shell {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    transition: background-color 0.5s ease;
+}
+
+.app-shell.night-mode {
+    --bg-color: #000;
+}
+
 /* Dynamic Radial Spotlight Following Mouse Cursor */
 .mouse-spotlight {
     pointer-events: none;
@@ -47,6 +74,22 @@ body {
     inset: 0;
     z-index: 30;
     transition: background var(--transition-fast);
+}
+
+.mouse-spotlight.night-moon::before {
+    content: '';
+    position: fixed;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    width: var(--moon-size);
+    height: var(--moon-size);
+    border-radius: 50%;
+}
+
+.mouse-spotlight.night-moon::before {
+    transform: translate(-50%, -50%);
+    background: var(--moon-color);
+    box-shadow: 0 0 20px 6px var(--moon-glow);
 }
 
 /* Page Layout Container */
@@ -89,6 +132,29 @@ body {
     font-weight: 700;
     color: var(--text-bright);
     letter-spacing: -0.025em;
+}
+
+@media (max-width: 1023px) {
+    .app-shell.night-mode .brand-title {
+        position: relative;
+        padding-right: 48px;
+    }
+
+    .app-shell.night-mode .brand-title::after {
+        content: '';
+        position: absolute;
+        top: 0.25em;
+        right: 4px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #fff4c2;
+        box-shadow: 0 0 20px 6px rgba(255, 244, 194, 0.28);
+    }
+
+    .mouse-spotlight.night-moon::before {
+        display: none;
+    }
 }
 
 /* Navigation Links */
@@ -341,16 +407,39 @@ body {
     z-index: 1; /* Sits behind content, above base background */
 }
 
+.app-shell.night-mode .star-field::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: var(--night-star-opacity);
+    background:
+        radial-gradient(circle at 7% 13%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 16% 42%, var(--night-star-cool-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 24% 76%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 32% 22%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 41% 58%, var(--night-star-cool-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 49% 9%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 57% 36%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 64% 82%, var(--night-star-cool-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 72% 18%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 81% 53%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 89% 29%, var(--night-star-cool-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 95% 72%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 12% 91%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 37% 92%, var(--night-star-cool-color) 0 var(--night-star-size), transparent var(--night-star-edge)),
+        radial-gradient(circle at 76% 94%, var(--night-star-color) 0 var(--night-star-size), transparent var(--night-star-edge));
+}
+
 .star {
     position: absolute;
     top: var(--star-top);
     left: var(--star-left);
-    width: 120px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent-teal), transparent);
+    width: var(--shooting-star-width);
+    height: var(--shooting-star-height);
+    background: linear-gradient(90deg, var(--shooting-star-color), transparent);
     border-radius: 50%;
-    filter: drop-shadow(0 0 6px var(--accent-teal));
-    transform: rotate(-35deg);
+    filter: drop-shadow(0 0 var(--shooting-star-glow-size) var(--shooting-star-color));
+    transform: rotate(var(--shooting-star-angle));
     opacity: 0;
     animation: shooting-star var(--star-duration) ease-in-out infinite;
     animation-delay: var(--star-delay);
@@ -362,16 +451,18 @@ body {
     top: 50%;
     transform: translateY(-50%);
     right: 0;
-    width: 6px;
-    height: 6px;
+    width: var(--shooting-star-head-size);
+    height: var(--shooting-star-head-size);
     background-color: var(--text-bright);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent-teal), 0 0 20px var(--accent-teal);
+    box-shadow:
+        0 0 var(--shooting-star-head-glow-inner) var(--shooting-star-color),
+        0 0 var(--shooting-star-head-glow-outer) var(--shooting-star-color);
 }
 
 @keyframes shooting-star {
     0% {
-        transform: rotate(-35deg) translateX(0);
+        transform: rotate(var(--shooting-star-angle)) translateX(0);
         opacity: 0;
     }
     15% {
@@ -381,7 +472,7 @@ body {
         opacity: 1;
     }
     100% {
-        transform: rotate(-35deg) translateX(-800px);
+        transform: rotate(var(--shooting-star-angle)) translateX(var(--shooting-star-travel));
         opacity: 0;
     }
 }

@@ -8,12 +8,22 @@ import { FallinngStarsEffect } from './fallinngStarsEffect';
 import { Footerpage } from './footerpage';
 import { SocialLinks } from './socialLinks';
 import ContactUs from './contactUS';
+import * as portfolioService from '../services/portfolioService';
 
 afterEach(() => {
   jest.restoreAllMocks();
 });
 
-test('renders the about, experience, projects, footer, social, and stars content', () => {
+test('renders the about, experience, projects, footer, social, and stars content', async () => {
+  jest.spyOn(portfolioService, 'getStars').mockResolvedValue([
+    { id: 'star-1', top: '10%', left: '80%', delay: '0s', duration: '2s' },
+    { id: 'star-2', top: '20%', left: '60%', delay: '1s', duration: '3s' },
+    { id: 'star-3', top: '30%', left: '40%', delay: '2s', duration: '4s' },
+    { id: 'star-4', top: '40%', left: '20%', delay: '3s', duration: '5s' },
+    { id: 'star-5', top: '50%', left: '10%', delay: '4s', duration: '6s' },
+    { id: 'star-6', top: '60%', left: '90%', delay: '5s', duration: '7s' },
+  ]);
+
   const { container } = render(
     <>
       <About />
@@ -37,7 +47,7 @@ test('renders the about, experience, projects, footer, social, and stars content
     'href',
     'https://github.com/vudumulaswaroop',
   );
-  expect(container.querySelectorAll('.star')).toHaveLength(6);
+  await waitFor(() => expect(container.querySelectorAll('.star')).toHaveLength(6));
   expect(container.querySelector('.star')).toHaveStyle({
     '--star-top': '10%',
     '--star-left': '80%',
@@ -115,6 +125,18 @@ test('sanitizes India and USA phone numbers and reports country-specific errors'
   fireEvent.change(usaPhone, { target: { name: 'phone', value: '123456789' } });
   fireEvent.submit(form);
   expect(screen.getByText('Please enter a valid 10-digit US phone number.')).toBeInTheDocument();
+});
+
+test('rejects an unsupported phone country through the validation fallback', () => {
+  const { container } = render(<ContactUs />);
+  const form = container.querySelector('form') as HTMLFormElement;
+  const otherCountry = screen.getByLabelText('Other') as HTMLInputElement;
+
+  otherCountry.value = 'unknown';
+  fireEvent.click(otherCountry);
+  fireEvent.submit(form);
+
+  expect(screen.getByText(/valid international phone number with country code/)).toBeInTheDocument();
 });
 
 test('validates international numbers and submits successfully', async () => {
