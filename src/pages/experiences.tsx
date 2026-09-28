@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import '../App.css';
+import "../App.css";
 import { ContentCard } from "../components/ContentCard";
 import { Section } from "../components/Section";
-import { fetchPortfolioData } from "../services/sheetsApi";
+import { getExperiences } from "../services/portfolioService";
 
 type Experience = {
+    id?: string;
     period: string;
     role: string;
     company: string;
@@ -16,31 +17,60 @@ type Experience = {
 export const Experiences = () => {
     const [experiences, setExperiences] = useState<Experience[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-useEffect(() => {
-    let isMounted = true;
+    useEffect(() => {
+        let isMounted = true;
 
-    fetchPortfolioData().then((data) => {
-        if (isMounted) {
-            setExperiences(data.experiences || []);
-            setLoading(false);
-        }
-    });
+        const loadExperiences = async () => {
+            try {
+                const data = await getExperiences();
 
-    return () => {
-        isMounted = false;
-    };
-}, []);
+                if (isMounted) {
+                    setExperiences(data || []);
+                }
+            } catch (err) {
+                console.error("Failed to load experiences:", err);
+
+                if (isMounted) {
+                    setError("Unable to load experiences.");
+                }
+            } finally {
+                if (isMounted) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        loadExperiences();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     return (
         <Section id="experience" title="Experience">
             <div className="card-list">
                 {loading ? (
-                    <p className="loading-text">Loading experiences...</p>
+                    <p className="loading-text">
+                        Loading experiences...
+                    </p>
+                ) : error ? (
+                    <p className="loading-text">
+                        {error}
+                    </p>
+                ) : experiences.length === 0 ? (
+                    <p className="loading-text">
+                        No experience data available.
+                    </p>
                 ) : (
                     experiences.map((exp, index) => (
                         <ContentCard
-                            key={`${exp.period}-${exp.company}-${index}`}
+                            key={
+                                exp.id ||
+                                `${exp.period}-${exp.company}-${index}`
+                            }
                             eyebrow={exp.period}
                             title={`${exp.role} · ${exp.company}`}
                             description={exp.description}
@@ -50,6 +80,7 @@ useEffect(() => {
                     ))
                 )}
             </div>
+
             <h3 className="section-title">
                 <a
                     href="/SwaroopReddyVudumulaResume.pdf"
