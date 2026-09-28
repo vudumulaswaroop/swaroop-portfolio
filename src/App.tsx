@@ -19,6 +19,11 @@ function App() {
     }).format(time));
     const isNight = indiaHour >= 18 || indiaHour < 6;
 
+    useEffect(() => {
+        document.body.classList.toggle('night-mode', isNight);
+        return () => document.body.classList.remove('night-mode');
+    }, [isNight]);
+
     // Track cursor position for the dynamic spotlight effect
     useEffect(() => {
         const handleMouseMove = (e: { clientX: any; clientY: any; }) => {

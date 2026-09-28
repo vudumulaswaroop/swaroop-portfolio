@@ -57,6 +57,13 @@ body {
     overflow-x: hidden;
 }
 
+@media (min-width: 1024px) {
+    body.night-mode,
+    body.night-mode * {
+        cursor: none ;/* expect for submit buttons its not a bug */
+    }
+}
+
 .app-shell {
     min-height: 100vh;
     background-color: var(--bg-color);
@@ -534,7 +541,7 @@ body {
     font-size: 16px;
     font-weight: 600;
     font-family: inherit;
-    cursor: pointer;
+    cursor: pointer; /* works even in the dark mode*/
     transition: background-color 0.2s ease, transform 0.2s ease,
     box-shadow 0.2s ease;
 }

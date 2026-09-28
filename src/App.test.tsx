@@ -27,8 +27,10 @@ test.each([
 
   if (isNight) {
     expect(getAppShell()).toHaveClass('night-mode');
+    expect(document.body).toHaveClass('night-mode');
   } else {
     expect(getAppShell()).not.toHaveClass('night-mode');
+    expect(document.body).not.toHaveClass('night-mode');
   }
 });
 
@@ -49,6 +51,7 @@ test('updates night mode and spotlight as time and pointer change', () => {
   });
 
   expect(getAppShell()).not.toHaveClass('night-mode');
+  expect(document.body).not.toHaveClass('night-mode');
 
   fireEvent.mouseMove(window, { clientX: 120, clientY: 240 });
 
@@ -56,6 +59,7 @@ test('updates night mode and spotlight as time and pointer change', () => {
   expect(spotlight?.getAttribute('style')).toContain('--mouse-y: 240px');
 
   unmount();
+  expect(document.body).not.toHaveClass('night-mode');
   act(() => {
     jest.advanceTimersByTime(1000);
   });

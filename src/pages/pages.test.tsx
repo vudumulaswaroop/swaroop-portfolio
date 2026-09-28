@@ -163,7 +163,9 @@ test('validates international numbers and submits successfully', async () => {
 });
 
 test('clears status when changing country and reports submission failures', async () => {
-  const fetchMock = jest.spyOn(global, 'fetch').mockRejectedValue(new Error('offline'));
+  const fetchError = new Error('offline');
+  const fetchMock = jest.spyOn(global, 'fetch').mockRejectedValue(fetchError);
+  const consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
   const { container } = render(<ContactUs />);
   const form = container.querySelector('form') as HTMLFormElement;
 
@@ -197,4 +199,5 @@ test('clears status when changing country and reports submission failures', asyn
     expect(screen.getByText('Something went wrong. Please try again.')).toBeInTheDocument();
   });
   expect(fetchMock).toHaveBeenCalled();
+  expect(consoleError).toHaveBeenCalledWith(fetchError);
 });
