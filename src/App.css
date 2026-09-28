@@ -291,6 +291,7 @@ body {
 @media (min-width: 1024px) {
     .section-title {
         display: none; 
+    }
 }
 
 .about-text p {
