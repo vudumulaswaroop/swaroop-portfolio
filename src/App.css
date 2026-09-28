@@ -290,8 +290,7 @@ body {
 
 @media (min-width: 1024px) {
     .section-title {
-        display: none; /* Hidden on large screens like Brittany Chiang's layout */
-    }
+        display: none; 
 }
 
 .about-text p {
