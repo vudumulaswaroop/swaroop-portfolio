@@ -1,0 +1,32 @@
+[debug] [2026-09-26T13:40:02.690Z] ----------------------------------------------------------------------
+[debug] [2026-09-26T13:40:02.695Z] Command:       /Users/swaroopreddyvudumula/.nvm/versions/node/v20.20.1/bin/node /Users/swaroopreddyvudumula/.nvm/versions/node/v20.20.1/bin/firebase init hosting
+[debug] [2026-09-26T13:40:02.695Z] CLI Version:   15.31.0
+[debug] [2026-09-26T13:40:02.695Z] Platform:      darwin
+[debug] [2026-09-26T13:40:02.695Z] Node Version:  v20.20.1
+[debug] [2026-09-26T13:40:02.696Z] Detected Agent: unknown
+[debug] [2026-09-26T13:40:02.696Z] Time:          Sat Sep 26 2026 19:10:02 GMT+0530 (India Standard Time)
+[debug] [2026-09-26T13:40:02.696Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/swaroopreddyvudumula/WebstormProjects/swaroop-portfolio
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2026-09-26T13:40:25.132Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-09-26T13:40:25.133Z] > authorizing via signed-in user (swaroop.vudumula@gmail.com)
+[debug] [2026-09-27T13:57:44.796Z] Error: read EIO
+    at TTY.onStreamRead (node:internal/stream_base_commons:218:20)
+    at TTY.callbackTrampoline (node:internal/async_hooks:130:17)
