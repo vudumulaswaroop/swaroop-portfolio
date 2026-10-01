@@ -1,6 +1,17 @@
 import { supabase } from "../lib/supabaseClient";
 
-export async function getExperiences() {
+export type Experience = {
+  id?: string;
+  period: string;
+  role: string;
+  company: string;
+  description: string;
+  skills: string[];
+  link?: string;
+  sort_order?: number;
+};
+
+export async function getExperiences(): Promise<Experience[]> {
   const { data, error } = await supabase
     .from("experiences")
     .select(`
@@ -26,19 +37,25 @@ export async function getExperiences() {
 
   return data.map((experience) => ({
     ...experience,
-    skills: experience.experience_skills.map(
-      (item) => item.skills.name
-    ),
-  }));
+    link: experience.link ?? undefined,
+    skills: experience.experience_skills.flatMap((item) => {
+      const skillRelation = item.skills as { name: string } | { name: string }[];
+      const skillName = Array.isArray(skillRelation)
+        ? skillRelation[0]?.name
+        : skillRelation.name;
+
+      return skillName ? [skillName] : [];
+    }),
+  })) as Experience[];
 }
 
 
 export type Project = {
-    id: string;
+  id?: string;
     title: string;
     description: string;
     link?: string;
-    sort_order: number;
+    sort_order?: number;
     skills: string[];
 };
 
@@ -56,7 +73,7 @@ export async function getPortfolioData() {
 }
 
 export type Star = {
-    id: string;
+  id?: string;
     top: string;
     left: string;
     delay: string;
@@ -90,7 +107,7 @@ export async function getStars(): Promise<Star[]> {
     }));
 }
 
-export async function getProjects() {
+export async function getProjects(): Promise<Project[]> {
     const { data, error } = await supabase
         .from("projects")
         .select("id, title, description, link, sort_order")

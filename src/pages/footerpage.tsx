@@ -1,10 +1,23 @@
-export const Footerpage = () => (
-    <footer className="footer">
+import React from "react";
+import { Trans, useTranslation } from "react-i18next";
+import i18n from "../i18n";
+
+export const Footerpage = () => {
+    const { t } = useTranslation();
+
+    return <footer className="footer" lang={i18n.language}>
         <p>
-            Built with <strong>ReactJS</strong> custom <strong>Plain CSS</strong>, and <strong> Google API</strong>
+            <Trans
+                i18nKey="footer.buildLine"
+                components={{
+                    react: <strong key="footer-react" />,
+                    css: <strong key="footer-css" />,
+                    api: <strong key="footer-api" />,
+                }}
+            />
         </p>
         <p>
-            Layout inspired by Dark night Falling Starts.
+            {t("footer.inspired")}
         </p>
-    </footer>
-);
+    </footer>;
+};

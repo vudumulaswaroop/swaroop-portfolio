@@ -1,79 +1,31 @@
 import React from "react";
+import { Trans, useTranslation } from "react-i18next";
+import i18n from "../i18n";
 import '../App.css';
 import { Section } from "../components/Section";
 
 
-export const About = () => (
-    <Section id="about" title="About">
+export const About = () => {
+    const { t } = useTranslation();
 
+    return <Section id="about" title={t("about.title")} lang={i18n.language}>
         <div className="about-text">
-
-            <h2>Technology Leader From Enterprise Engineering to Startup Building</h2>
-
-            <p>
-                I am a <strong>technology leader and hands-on software architect</strong> with
-                experience spanning <strong>Scientific IT, Healthcare, High-Scale Web Platforms,
-                Industrial IoT, Pharma Manufacturing, AI, and Startup Product Development</strong>.
-            </p>
-
-            <p>
-                My career has evolved from building software for
-                <strong> DNA diagnostic and scientific instruments</strong>, to engineering
-                healthcare and pharmacy platforms, to architecting web ecosystems supporting
-                <strong> 50,000+ automotive dealership websites</strong>, and now leading
-                technology and operations while transforming industrial machinery into
-                connected, data-driven systems.
-            </p>
-            <p>
-                Alongside my enterprise experience, I continue to build
-                <strong> startup-style technology products</strong> focused on solving
-                real-world business and operational problems.
-            </p>
-
-            <h2>Scientific IT → Healthcare → Massive Web Scale → Industrial IoT → Leadership</h2>
-
-
-
-
-
-
-            <p className="technology-flow">
-                <strong>
-                    Physical Machinery → Sensors → Data → Cloud → Analytics → React Dashboards
-                    → Business Decisions
-                </strong>
-            </p>
-
-
-
-
-
-
-
-            <h2>Leadership &amp; Technology</h2>
+            <h2>{t("about.headline")}</h2>
+            <p><Trans i18nKey="about.intro" components={{ strong: <strong key="about-intro-strong" /> }} /></p>
+            <p><Trans i18nKey="about.journey" components={{ strong: <strong key="about-journey-strong" /> }} /></p>
+            <p><Trans i18nKey="about.startup" components={{ strong: <strong key="about-startup-strong" /> }} /></p>
+            <h2>{t("about.journeyHeading")}</h2>
+            <p className="technology-flow"><strong>{t("about.flow")}</strong></p>
+            <h2>{t("about.leadershipHeading")}</h2>
 
             <ul>
                 <li>
-                    <strong>Technology &amp; Executive Leadership:</strong>
-                    Leading a 40+ person organization across engineering, manufacturing,
-                    and business operations—aligning technical strategy, execution priorities,
-                    and digital transformation to drive measurable operational growth.
+                    <strong>{t("about.leadershipLabel")}</strong> {t("about.leadership")}
                 </li>
-
                 <li>
-                    <strong>Digital Transformation:</strong>
-                    Modernizing traditional operational workflows and connecting
-                    physical manufacturing environments with modern software platforms.
+                    <strong>{t("about.transformationLabel")}</strong> {t("about.transformation")}
                 </li>
-
-
             </ul>
-
-
-
-
-
-
         </div>
-    </Section>
-);
+    </Section>;
+};

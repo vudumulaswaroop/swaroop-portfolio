@@ -61,6 +61,31 @@ describe("getExperiences", () => {
     expect(mockFrom).toHaveBeenCalledWith("experiences");
   });
 
+  it("handles skill relations returned as arrays and skips empty relations", async () => {
+    configureResponses({
+      experiences: {
+        data: [
+          {
+            id: "experience-array-skills",
+            period: "2024 - Present",
+            role: "Engineer",
+            company: "Example Corp",
+            description: "Builds software.",
+            experience_skills: [
+              { skills: [{ name: "React" }] },
+              { skills: [] },
+            ],
+          },
+        ],
+        error: null,
+      },
+    });
+
+    await expect(getExperiences()).resolves.toEqual([
+      expect.objectContaining({ skills: ["React"] }),
+    ]);
+  });
+
   it("throws query errors", async () => {
     const error = new Error("experience query failed");
     configureResponses({ experiences: { data: null, error } });

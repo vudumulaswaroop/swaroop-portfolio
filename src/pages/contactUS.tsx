@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 import {GOOGLEAPI} from "../constants/constants";
 
 const GOOGLE_SCRIPT_URL = GOOGLEAPI;
 type PhoneCountry = "india" | "usa" | "other";
 
 export default function ContactUs() {
+    const { t } = useTranslation();
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -127,23 +130,22 @@ export default function ContactUs() {
         if (!validatePhone()) {
 
             if (phoneCountry === "india") {
-                setStatus(
-                    "Please enter a valid 10-digit Indian mobile number."
-                );
+                    setStatus(t("contact.invalidIndia"));
             } else if (phoneCountry === "usa") {
-                setStatus(
-                    "Please enter a valid 10-digit US phone number."
-                );
+                setStatus(t("contact.invalidUsa"));
             } else {
-                setStatus(
-                    "Please enter a valid international phone number with country code, e.g. +447911123456."
-                );
+                setStatus(t("contact.invalidOther"));
             }
 
             return;
         }
 
-        setStatus("Sending...");
+        setStatus(t("contact.sending"));
+
+        if (!GOOGLE_SCRIPT_URL) {
+            setStatus(t("contact.failure"));
+            return;
+        }
 
         try {
             await fetch(GOOGLE_SCRIPT_URL, {
@@ -158,9 +160,7 @@ export default function ContactUs() {
                 }),
             });
 
-            setStatus(
-                "Thank you! Your message has been sent."
-            );
+            setStatus(t("contact.success"));
 
             setForm({
                 name: "",
@@ -172,21 +172,19 @@ export default function ContactUs() {
             setPhoneCountry("india");
         } catch (error) {
             console.error(error);
-            setStatus(
-                "Something went wrong. Please try again."
-            );
+            setStatus(t("contact.failure"));
         }
     };
 
     return (
-        <section id="contactus" className="contact">
-            <h1>Contact Us</h1>
+        <section id="contactus" className="contact" lang={i18n.language}>
+            <h1>{t("contact.title")}</h1>
 
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="name"
-                    placeholder="Your Name"
+                    placeholder={t("contact.name")}
                     value={form.name}
                     onChange={handleChange}
                     required
@@ -195,7 +193,7 @@ export default function ContactUs() {
                 <input
                     type="email"
                     name="email"
-                    placeholder="Your Email"
+                    placeholder={t("contact.email")}
                     value={form.email}
                     onChange={handleChange}
                     required
@@ -211,7 +209,7 @@ export default function ContactUs() {
                             checked={phoneCountry === "india"}
                             onChange={handleCountryChange}
                         />
-                        India (+91)
+                        {t("contact.india")}
                     </label>
 
                     <label>
@@ -222,7 +220,7 @@ export default function ContactUs() {
                             checked={phoneCountry === "usa"}
                             onChange={handleCountryChange}
                         />
-                        USA (+1)
+                        {t("contact.usa")}
                     </label>
 
                     <label>
@@ -233,7 +231,7 @@ export default function ContactUs() {
                             checked={phoneCountry === "other"}
                             onChange={handleCountryChange}
                         />
-                        Other
+                        {t("contact.other")}
                     </label>
                 </div>
 
@@ -242,13 +240,13 @@ export default function ContactUs() {
                     <input
                         type="tel"
                         name="phone"
-                        placeholder="Phone Number"
+                        placeholder={t("contact.phone")}
                         value={form.phone}
                         onChange={handleChange}
                         pattern="[6-9][0-9]{9}"
                         maxLength={10}
                         inputMode="numeric"
-                        title="Please enter a valid 10-digit Indian mobile number"
+                        title={t("contact.indiaPhoneTitle")}
                         required
                     />
                 )}
@@ -258,13 +256,13 @@ export default function ContactUs() {
                     <input
                         type="tel"
                         name="phone"
-                        placeholder="Phone Number"
+                        placeholder={t("contact.phone")}
                         value={form.phone}
                         onChange={handleChange}
                         pattern="[2-9][0-9]{9}"
                         maxLength={10}
                         inputMode="numeric"
-                        title="Please enter a valid 10-digit US phone number"
+                        title={t("contact.usaPhoneTitle")}
                         required
                     />
                 )}
@@ -274,20 +272,20 @@ export default function ContactUs() {
                     <input
                         type="tel"
                         name="phone"
-                        placeholder="Phone Number (+447911123456)"
+                        placeholder={t("contact.internationalPhone")}
                         value={form.phone}
                         onChange={handleChange}
                         pattern="^\+[1-9][0-9]{6,14}$"
                         maxLength={20}
                         inputMode="tel"
-                        title="Enter a valid international phone number with country code, e.g. +447911123456"
+                        title={t("contact.internationalPhoneTitle")}
                         required
                     />
                 )}
 
                 <textarea
                     name="message"
-                    placeholder="Your Message"
+                    placeholder={t("contact.message")}
                     value={form.message}
                     onChange={handleChange}
                     rows={5}
@@ -295,7 +293,7 @@ export default function ContactUs() {
                 />
 
                 <button type="submit">
-                    Send Message
+                    {t("contact.send")}
                 </button>
             </form>
 

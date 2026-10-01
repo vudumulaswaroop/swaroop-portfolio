@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 
 interface SEOProps {
     title?: string;
@@ -9,16 +11,18 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({ title, description, keywords, canonicalUrl }) => {
+    const { t } = useTranslation();
     const siteUrl = canonicalUrl || 'https://swaroopvudumula.com/';
-    const defaultTitle = 'Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech';
-    const defaultDescription = 'Official portfolio of Swaroop Reddy Vudumula featuring Agri Milk live updates, Pharma Tech, pharmaceutical machinery engineering, and IT software development.';
+    const defaultTitle = t('seo.title');
+    const defaultDescription = t('seo.description');
 
     return (
         <Helmet>
             {/* Standard Metadata */}
             <title>{title ? `${title} | Swaroop Reddy Vudumula` : defaultTitle}</title>
             <meta name="description" content={description || defaultDescription} />
-            <meta name="keywords" content={keywords || 'Swaroop, Swaroop Reddy, Swaroop Reddy Vudumula, Swaroop Vudumula, Agri Milk, Pharma Tech, Pharma Machinery, UI Developer, Software Engineer'} />
+            <meta name="keywords" content={keywords || t('seo.keywords')} />
+            <meta property="og:locale" content={i18n.language.replace('-', '_')} />
             <link rel="canonical" href={siteUrl} />
 
             {/* Open Graph / Social Media */}

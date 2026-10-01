@@ -37,3 +37,5 @@ describe("supabase client configuration", () => {
     expect(supabase).toBe(client);
   });
 });
+
+export {};

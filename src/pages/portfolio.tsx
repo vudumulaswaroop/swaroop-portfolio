@@ -2,6 +2,7 @@ import React from "react";
 import {SocialLinks} from "./socialLinks";
 import {Mainpage} from "./mainpage";
 import {Bio} from "./bio";
+export { LanguagePopup } from "./languagepopup";
 export const Portfolio = () => (
     <div className="portfolio-container">
         {/* Left Sticky Sidebar Header */}

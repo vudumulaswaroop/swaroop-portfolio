@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 import "../App.css";
 import { ContentCard } from "../components/ContentCard";
 import { Section } from "../components/Section";
@@ -13,6 +15,7 @@ type Project = {
 };
 
 export const Projects = () => {
+    const { t } = useTranslation();
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -48,19 +51,19 @@ export const Projects = () => {
     }, []);
 
     return (
-        <Section id="projects" title="Projects">
+        <Section id="projects" title={t("projects.title")} lang={i18n.language}>
             <div className="card-list">
                 {loading ? (
                     <p className="loading-text">
-                        Loading projects...
+                        {t("projects.loading")}
                     </p>
                 ) : error ? (
                     <p className="loading-text">
-                        {error}
+                        {t("projects.error")}
                     </p>
                 ) : projects.length === 0 ? (
                     <p className="loading-text">
-                        No projects available.
+                        {t("projects.empty")}
                     </p>
                 ) : (
                     projects.map((proj, index) => (
@@ -69,7 +72,7 @@ export const Projects = () => {
                                 proj.id ||
                                 `${proj.title}-${index}`
                             }
-                            eyebrow="Project"
+                            eyebrow={t("projects.eyebrow")}
                             title={proj.title}
                             description={proj.description}
                             skills={proj.skills}

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 import "../App.css";
 import { ContentCard } from "../components/ContentCard";
 import { Section } from "../components/Section";
@@ -15,6 +17,7 @@ type Experience = {
 };
 
 export const Experiences = () => {
+    const { t } = useTranslation();
     const [experiences, setExperiences] = useState<Experience[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -50,19 +53,19 @@ export const Experiences = () => {
     }, []);
 
     return (
-        <Section id="experience" title="Experience">
+            <Section id="experience" title={t("experience.title")} lang={i18n.language}>
             <div className="card-list">
                 {loading ? (
                     <p className="loading-text">
-                        Loading experiences...
+                        {t("experience.loading")}
                     </p>
                 ) : error ? (
                     <p className="loading-text">
-                        {error}
+                        {t("experience.error")}
                     </p>
                 ) : experiences.length === 0 ? (
                     <p className="loading-text">
-                        No experience data available.
+                        {t("experience.empty")}
                     </p>
                 ) : (
                     experiences.map((exp, index) => (
@@ -87,7 +90,7 @@ export const Experiences = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Take a look at my resume
+                    {t("experience.resume")}
                 </a>
             </h3>
         </Section>

@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 export const Navlinks = ()=> {
-
+    const { t } = useTranslation();
     const [activeSection, setActiveSection] = useState('about');
 
     useEffect(() => {
@@ -31,13 +33,13 @@ export const Navlinks = ()=> {
     }, []);
 
     return (
-        <nav className="nav-menu">
+        <nav className="nav-menu" lang={i18n.language}>
         <ul className="nav-list">
             {['about', 'experience', 'projects','contactus'].map((id) => (
                 <li key={id} className={`nav-item ${activeSection === id ? 'active' : ''}`}>
                     <a href={`#${id}`}>
                         <span className="nav-line"></span>
-                        <span>{id}</span>
+                        <span>{t(`nav.${id}`)}</span>
                     </a>
                 </li>
             ))}

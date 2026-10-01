@@ -81,11 +81,11 @@ test('renders navigation and changes the active section while scrolling', () => 
   });
 
   fireEvent.scroll(window);
-  expect(screen.getByText('experience').closest('li')).toHaveClass('active');
+  expect(screen.getByRole('link', { name: 'Experience' }).closest('li')).toHaveClass('active');
 
   Object.defineProperty(window, 'scrollY', { configurable: true, value: 1200 });
   fireEvent.scroll(window);
-  expect(screen.getByText('contactus').closest('li')).toHaveClass('active');
+  expect(screen.getByRole('link', { name: 'Contact' }).closest('li')).toHaveClass('active');
 });
 
 const fillRequiredContactFields = () => {

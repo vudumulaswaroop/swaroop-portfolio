@@ -8,3 +8,5 @@ test('mounts the application at the root element', () => {
     require('./index');
   });
 });
+
+export {};

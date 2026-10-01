@@ -11,6 +11,7 @@ Personal portfolio for Swaroop Reddy Vudumula, a software engineer and technolog
 
 - Responsive single-page portfolio layout
 - About, experience, projects, and contact sections
+- English and Hindi interface translations with an in-page locale selector
 - Supabase-backed experience, project, and star data
 - Scroll-aware navigation with contact-section handling at the bottom of the page
 - Contact form with India, USA, and international phone validation
@@ -21,6 +22,8 @@ Personal portfolio for Swaroop Reddy Vudumula, a software engineer and technolog
 - SEO metadata, Open Graph tags, Twitter cards, JSON-LD structured data, `robots.txt`, and sitemap
 - Automated tests with coverage reporting
 
+The locale selector includes the configured locale list. Complete translation catalogs currently exist for `en-US` and `hi-IN`; other locale selections currently fall back to English until their catalogs are added under `src/locales/`.
+
 ## Tech Stack
 
 - React 19
@@ -28,6 +31,7 @@ Personal portfolio for Swaroop Reddy Vudumula, a software engineer and technolog
 - React DOM
 - React Helmet Async
 - Supabase JavaScript client
+- i18next with React bindings for localized UI and metadata
 - Create React App with `react-scripts`
 - HTML and CSS
 - Jest and Testing Library
@@ -109,6 +113,8 @@ src/
   api/             Legacy API integration code
   components/      Reusable cards, sections, tags, and SEO component
   constants/       Contact endpoint configuration and static portfolio content
+  locales/         One JSON translation catalog per currently translated locale
+  i18n.ts           i18next initialization and locale fallback configuration
   lib/             Supabase client initialization
   pages/           Portfolio sections, navigation, contact form, and star effect
   services/        Supabase portfolio queries and contact-sheet integration

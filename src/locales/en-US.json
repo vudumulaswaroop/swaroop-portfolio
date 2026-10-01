@@ -1,0 +1,88 @@
+{
+  "language": {
+    "select": "Select language",
+    "title": "Choose a language",
+    "search": "Search languages",
+    "close": "Close language selector",
+    "noResults": "No languages found."
+  },
+  "seo": {
+    "title": "Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech",
+    "description": "Official portfolio of Swaroop Reddy Vudumula, a software engineer and technology leader building Agri Milk monitoring, Pharma Tech, Industrial IoT, and modern web products.",
+    "keywords": "Swaroop, Swaroop Reddy, Swaroop Reddy Vudumula, Swaroop Vudumula, Agri Milk, Pharma Tech, Pharma Machinery, UI Developer, Software Engineer",
+    "socialDescription": "Explore software engineering, Industrial IoT, Agri Milk monitoring, Pharma Tech, and web product work by Swaroop Reddy Vudumula.",
+    "personDescription": "Software engineer and technology leader specializing in Industrial IoT, Agri Milk monitoring, Pharma Tech, and web product development.",
+    "websiteDescription": "Portfolio of Swaroop Reddy Vudumula, software engineer and technology leader."
+  },
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contactus": "Contact"
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "bio": {
+    "name": "Swaroop Reddy Vudumula",
+    "philosophy": "My Technology Philosophy",
+    "intro": "I don't just build interfaces. I understand the systems behind them — the <strong>machines, data, APIs, cloud services, users, business processes, and teams</strong> required to make technology work in the real world.",
+    "commonTheme": "The common theme across my work is simple:",
+    "highlight": "I build technology that connects real-world operations with software, data, and intelligent decision-making."
+  },
+  "about": {
+    "title": "About",
+    "headline": "Technology Leader From Enterprise Engineering to Startup Building",
+    "intro": "I am a <strong>technology leader and hands-on software architect</strong> with experience spanning <strong>Scientific IT, Healthcare, High-Scale Web Platforms, Industrial IoT, Pharma Manufacturing, AI, and Startup Product Development</strong>.",
+    "journey": "My career has evolved from building software for <strong>DNA diagnostic and scientific instruments</strong>, to engineering healthcare and pharmacy platforms, to architecting web ecosystems supporting <strong>50,000+ automotive dealership websites</strong>, and now leading technology and operations while transforming industrial machinery into connected, data-driven systems.",
+    "startup": "Alongside my enterprise experience, I continue to build <strong>startup-style technology products</strong> focused on solving real-world business and operational problems.",
+    "journeyHeading": "Scientific IT → Healthcare → Massive Web Scale → Industrial IoT → Leadership",
+    "flow": "Physical Machinery → Sensors → Data → Cloud → Analytics → React Dashboards → Business Decisions",
+    "leadershipHeading": "Leadership & Technology",
+    "leadershipLabel": "Technology & Executive Leadership:",
+    "leadership": "Leading a 40+ person organization across engineering, manufacturing, and business operations—aligning technical strategy, execution priorities, and digital transformation to drive measurable operational growth.",
+    "transformationLabel": "Digital Transformation:",
+    "transformation": "Modernizing traditional operational workflows and connecting physical manufacturing environments with modern software platforms."
+  },
+  "experience": {
+    "title": "Experience",
+    "loading": "Loading experiences...",
+    "error": "Unable to load experiences.",
+    "empty": "No experience data available.",
+    "resume": "Take a look at my resume"
+  },
+  "projects": {
+    "title": "Projects",
+    "eyebrow": "Project",
+    "loading": "Loading projects...",
+    "error": "Unable to load projects.",
+    "empty": "No projects available."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Your Name",
+    "email": "Your Email",
+    "phone": "Phone Number",
+    "internationalPhone": "Phone Number (+447911123456)",
+    "message": "Your Message",
+    "india": "India (+91)",
+    "usa": "USA (+1)",
+    "other": "Other",
+    "send": "Send Message",
+    "indiaPhoneTitle": "Please enter a valid 10-digit Indian mobile number",
+    "usaPhoneTitle": "Please enter a valid 10-digit US phone number",
+    "internationalPhoneTitle": "Enter a valid international phone number with country code, e.g. +447911123456",
+    "invalidIndia": "Please enter a valid 10-digit Indian mobile number.",
+    "invalidUsa": "Please enter a valid 10-digit US phone number.",
+    "invalidOther": "Please enter a valid international phone number with country code, e.g. +447911123456.",
+    "sending": "Sending...",
+    "success": "Thank you! Your message has been sent.",
+    "failure": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "buildLine": "Built with <react>ReactJS</react> custom <css>Plain CSS</css>, and <api>Google API</api>",
+    "inspired": "Layout inspired by Dark night Falling Stars."
+  }
+}

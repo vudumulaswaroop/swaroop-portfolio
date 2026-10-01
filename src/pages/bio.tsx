@@ -1,26 +1,22 @@
 import React from "react";
+import { Trans, useTranslation } from "react-i18next";
 import {Navlinks} from "./navlinks";
-export const Bio = () => (
-    <>
-        <h1 className="brand-title">Swaroop Reddy Vudumula</h1>
-        <h2>My Technology Philosophy</h2>
+export const Bio = () => {
+    const { t } = useTranslation();
 
-        <p>
-            I don't just build interfaces. I understand the systems behind them —
-            the <strong>machines, data, APIs, cloud services, users, business processes,
-            and teams</strong> required to make technology work in the real world.
-        </p>
-        <Navlinks/>
-        <div className="social-links"></div>
-        <p>
-            The common theme across my work is simple:
-        </p>
+    return (
+        <>
+            <h1 className="brand-title">{t("bio.name")}</h1>
+            <h2>{t("bio.philosophy")}</h2>
 
-        <p className="about-highlight">
-            <strong>
-                I build technology that connects real-world operations with software,
-                data, and intelligent decision-making.
-            </strong>
-        </p>
-    </>
-);
+            <p><Trans i18nKey="bio.intro" components={{ strong: <strong key="bio-intro-strong" /> }} /></p>
+            <Navlinks/>
+            <div className="social-links"></div>
+            <p>{t("bio.commonTheme")}</p>
+
+            <p className="about-highlight">
+                <strong>{t("bio.highlight")}</strong>
+            </p>
+        </>
+    );
+};

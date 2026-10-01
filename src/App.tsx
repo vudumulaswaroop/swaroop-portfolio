@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import './App.css';
 import {FallinngStarsEffect} from "./pages/fallinngStarsEffect";
-import {Portfolio} from "./pages/portfolio";
+import {LanguagePopup, Portfolio} from "./pages/portfolio";
 function App() {
+    const { t, i18n } = useTranslation();
+    const currentLanguage = i18n.language;
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [time, setTime] = useState(new Date());
 
@@ -24,6 +27,10 @@ function App() {
         return () => document.body.classList.remove('night-mode');
     }, [isNight]);
 
+    useEffect(() => {
+        document.documentElement.lang = currentLanguage;
+    }, [currentLanguage]);
+
     // Track cursor position for the dynamic spotlight effect
     useEffect(() => {
         const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
@@ -40,31 +47,31 @@ function App() {
     <div className={`app-shell${isNight ? ' night-mode' : ''}`}>
           {/* Global SEO Meta Tags */}
           <Helmet>
-              <title>Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech</title>
+              <title>{t('seo.title')}</title>
               <meta name="robots" content="index, follow, max-image-preview:large" />
               <meta
                   name="description"
-                  content="Official portfolio of Swaroop Reddy Vudumula, a software engineer and technology leader building Agri Milk monitoring, Pharma Tech, Industrial IoT, and modern web products."
+                  content={t('seo.description')}
               />
               <meta
                   name="keywords"
-                  content="Swaroop, Swaroop Reddy, Swaroop Reddy Vudumula, Swaroop Vudumula, Agri Milk, Pharma Tech, Pharma Machinery, UI Developer, Software Engineer"
+                  content={t('seo.keywords')}
               />
               <meta name="author" content="Swaroop Reddy Vudumula" />
               <link rel="canonical" href="https://swaroopvudumula.com/" />
               <meta property="og:site_name" content="Swaroop Reddy Vudumula" />
-              <meta property="og:locale" content="en_US" />
+              <meta property="og:locale" content={currentLanguage.replace('-', '_')} />
               <meta property="og:image" content="https://swaroopvudumula.com/logo192.png" />
               <meta property="og:image:alt" content="Swaroop Reddy Vudumula portfolio" />
 
               {/* Open Graph Tags */}
-              <meta property="og:title" content="Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech" />
-              <meta property="og:description" content="Explore projects by Swaroop Reddy Vudumula in Agri Milk, Pharma Tech, Pharma Machinery, and IT product engineering." />
+              <meta property="og:title" content={t('seo.title')} />
+              <meta property="og:description" content={t('seo.socialDescription')} />
               <meta property="og:url" content="https://swaroopvudumula.com/" />
               <meta property="og:type" content="website" />
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content="Swaroop Reddy Vudumula | Software Engineer, Agri Milk & Pharma Tech" />
-              <meta name="twitter:description" content="Explore software engineering, Industrial IoT, Agri Milk monitoring, Pharma Tech, and web product work by Swaroop Reddy Vudumula." />
+              <meta name="twitter:title" content={t('seo.title')} />
+              <meta name="twitter:description" content={t('seo.socialDescription')} />
               <meta name="twitter:image" content="https://swaroopvudumula.com/logo192.png" />
 
               {/* Structured Data (JSON-LD) */}
@@ -79,7 +86,7 @@ function App() {
                               "alternateName": ["Swaroop Reddy", "Swaroop Vudumula", "Swaroop"],
                               "url": "https://swaroopvudumula.com/",
                               "jobTitle": "Software Engineer & Technology Leader",
-                              "description": "Software engineer and technology leader specializing in Industrial IoT, Agri Milk monitoring, Pharma Tech, and web product development.",
+                              "description": t('seo.personDescription'),
                               "sameAs": [
                                   "https://github.com/vudumulaswaroop",
                                   "https://www.linkedin.com/in/swaroop-reddy-vudumula/"
@@ -91,7 +98,7 @@ function App() {
                               "@id": "https://swaroopvudumula.com/#website",
                               "url": "https://swaroopvudumula.com/",
                               "name": "Swaroop Reddy Vudumula Portfolio",
-                              "description": "Portfolio of Swaroop Reddy Vudumula, software engineer and technology leader.",
+                              "description": t('seo.websiteDescription'),
                               "publisher": {"@id": "https://swaroopvudumula.com/#person"}
                           }
                       ]
@@ -111,6 +118,7 @@ function App() {
           />
           {/* Falling Stars Layer */}
           <FallinngStarsEffect/>
+          {/* <LanguagePopup /> */}
           <Portfolio/>
       </div>
   );
